@@ -1,0 +1,24 @@
+{
+  "name": "loveletter-team13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raagz123/LoveLetter-Team13.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raagz123/LoveLetter-Team13/issues"
+  },
+  "homepage": "https://github.com/raagz123/LoveLetter-Team13#readme"
+}
