@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/home.css">
+    <script src = "/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:3000');
+   </script>
+    <title>Love letter</title>
+  </head>
+  <body>
+    <div class="container mt-0 pl-5 pr-5 pb-5 pt-0" >
+      <div class="row">
+        <div class="col-6 text-center mt-5">
+          <img src="images_folder/love_letter_display_image.jpg" class="lady_img">
+        </div>
+        <div class="col-6">
+          <div class="row">   
+            <div class="col-12 text-right align-text-top mb-5">
+              <img src="images_folder/download.jpg" class="img-fluid scroll_close" id="scroll_closeid" onclick="showclass()">
+              <img src="images_folder/open_scroll.jpg" class="img-fluid scroll_open hideclass" id="scroll_openid" onclick="hideclass()">
+              <a href="about" class="sidetext1 hideclass" style="text-decoration:none" id="sidetext1id">ABOUT US</a>
+              <a href="private" class="sidetext2 hideclass" style="text-decoration:none" id="sidetext2id">PRIVACY POLICY</a>
+            </div>
+            <div class="col-12 text-left mt-4 mb-4">
+              <a href="#" style="text-decoration:none"><h1 class="mt-5">NEW GAME</h1></a>
+            </div>
+            <div class="col-12 text-left mt-4 mb-4">
+              <a href="rules" style="text-decoration:none"><h1 class="mt-5">RULES</h1></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/file.js"></script>
+    </body>
+</html> 
