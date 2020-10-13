@@ -21,6 +21,11 @@ router.get('/private', function(req, res) {
     res.render('private');
 });
 
+//GET GameCreation
+router.get('/GameCreation', function(req, res) {
+    res.render('GameCreation');
+});
+
 
   
 module.exports=router;
