@@ -5,11 +5,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
       <link rel="stylesheet" href="css/home.css">
-       <script src = "/socket.io/socket.io.js"></script>
+      <script src = "/socket.io/socket.io.js"></script>
       <script>
       var socket = io('http://localhost:3000');
-   </script>
-      <title>Hello, world!</title>
+      </script>
+      
+      <title>Love letter</title>
    </head>
    <body>
       <div class="container-fluid ">
@@ -65,11 +66,11 @@
             <div class="col-4 text-center mt-5 mb-3 row"></div>
             <div class="col-4 text-center">
               <div class="row">
-              <h5 class="col-12">Join Game</h5>
-              <input class="col-6 offset-3 bg-faded" type="text" name="" placeholder="Room Id" style="height: 30px;font-size: 20px;background-color: #C4C4C4">
+              <h5 class="col-12" for="joinRoom">Join Game</h5>
+              <input id="joinRoom" class="col-6 offset-3 bg-faded" type="text" name="" placeholder="Room Id" style="height: 30px;font-size: 20px;background-color: #C4C4C4">
             </div>
             <div>
-                <button type="button" class="btn btc2"><a href="#"  style="text-decoration:none">Join</a> </button>
+                <button id="joinbtn" type="button" class="btn btc2"><a href="#"  style="text-decoration:none">Join</a> </button>
             </div>
           </div>
           <div class="col-12 text-center">
@@ -83,34 +84,9 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
       <script type="text/javascript" src="js/file.js"></script>
-      <script>
-        var username = null;
-
-        $('#newbtn').on('click', function () { //create new room
-
-        $('#error-container').html('');
-        if($('#username').val()){
-            username = $('#username').val();
-        }
-
-        if($('#newRoom').val()){
-           socket.emit('createGame', {room_name: $('#newRoom').val(), username: username})
-        }else{
-           $('#error-container').append('<p class="error-msg">Please enter room id</p>')
-       }
-        });
-    
-        //socket events
-        socket.on('err', function (data) {
-        $('#error-container').html('');
-        $('#error-container').append('<p class="error-msg">'+data.reason+'</p>');
-        });
-
-        socket.on('error', function (data) {
-        console.log(data);
-        });
-
-
-      </script>
+      <script src="./client.js"></script>
+      
+      
+      
    </body>
 </html>
