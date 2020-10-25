@@ -1,16 +1,14 @@
 body{
 	background-color:#EAEB8C;
 	font-family: Marko One;
-	font-size: 60px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 80px;
-	letter-spacing: 0em;
 	text-align: left;	
 	}
 	
 	.scroll_close{
-		position: relative;
+	position: relative;
 	height: 55.625px;
 	width: 154.9104309082031px;
 	left: 0px;
@@ -87,5 +85,12 @@ body{
 		text-align: center;
 		color: red;
 		font-weight: bold;
-		width: 100%;
+		margin-bottom: 0%;
+	}
+
+	.error-msg-user{
+		text-align: center;
+			color: red;
+			font-weight: bold;
+			margin-bottom: 0%;
 	}
