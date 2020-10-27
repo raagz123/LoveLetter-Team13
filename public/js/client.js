@@ -87,3 +87,8 @@
             $('#messages p:last-child').css('color', data.color);
         }
     });
+
+    socket.on('message', function (data) {
+        $('#messages').append('<p name="message">'+data.username+': '+data.msg+'</p>');
+        $('#messages p:last-child').css({color: data.color, fontWeight: 'bold'});
+    });
