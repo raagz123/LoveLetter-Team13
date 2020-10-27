@@ -1,0 +1,33 @@
+
+.imgcus2{
+    max-height: 100px !important;
+    min-height: 100px !important;
+    min-width: 80px!important;
+}
+
+body{
+background-color:#EAEB8C;
+}
+
+.btc3{
+        background: #0ECA21
+}
+.btn {
+ outline:none !important; 
+} 
+.spaceFormatter1{
+min-height: 30px !important;
+}
+
+.spaceFormatter2{
+min-height: 260px !important;
+}
+
+.spaceFormatter3{
+background-color: grey;
+min-height: 70px !important;
+}
+
+.spaceFormatter4{
+min-height: 540px !important;
+}
