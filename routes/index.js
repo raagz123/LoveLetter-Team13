@@ -26,6 +26,12 @@ router.get('/GameCreation', function(req, res) {
     res.render('GameCreation');
 });
 
+//GET game
+router.get('/game', function(req, res) {
+    res.render('game');
+});
+
+
 
   
 module.exports=router;

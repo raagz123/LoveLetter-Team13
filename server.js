@@ -10,6 +10,25 @@ const {addPlayer, getPlayers} = require('./myfunction.js');
 
 const rooms = {};
 
+let buildDeck = function () {
+    let deck = [];
+    for (i = 0; i < 5; i++) {
+        deck.push(suits[1])
+    }
+    for (i = 0; i < 2; i++) {
+        deck.push(suits[2]);
+        deck.push(suits[3]);
+        deck.push(suits[4]);
+        deck.push(suits[5]);
+    }
+    deck.push(suits[6]);
+    deck.push(suits[7]);
+    deck.push(suits[8]);
+
+
+    return deck;
+};
+
 //socket.io connection
 io.on('connection', function (socket){
   console.log('player connected');
@@ -98,24 +117,7 @@ io.on('connection', function (socket){
         }
     });
  
-        let buildDeck = function () {
-            let deck = [];
-            for (i = 0; i < 5; i++) {
-                deck.push(suits[1])
-            }
-            for (i = 0; i < 2; i++) {
-                deck.push(suits[2]);
-                deck.push(suits[3]);
-                deck.push(suits[4]);
-                deck.push(suits[5]);
-            }
-            deck.push(suits[6]);
-            deck.push(suits[7]);
-            deck.push(suits[8]);
-        
-        
-            return deck;
-        };
+       
 
 
 
