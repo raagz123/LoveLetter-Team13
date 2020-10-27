@@ -42,5 +42,42 @@
     });
       
       
-    
+    var getChat = function(container_id){
+        $.ajax({
+            type: 'GET',
+            async: false,
+            url: "partials/chatroom.html",
+            success: function (html) {
+                $(container_id).append(html);
+            },
+            error: function (err) {
+                console.warn(err);
+                location.reload();
+            }
+        });
+
+        $('#new-message').on('keydown', function (e) { //don't allow new lines
+            if(e.keyCode === 13){
+                return false;
+            }
+        });
+        
+        $('#new-message').on('keyup', function (e) { //send message with enter
+            let val = $.trim($('#new-message').val());
+            if(e.keyCode === 13 && val){
+                socket.emit('message', {msg: val});
+                $('#new-message').val('');
+            }
+        });
+
+        $('#send-message').on('click', function () { //send message
+            let val = $.trim($('#new-message').val());
+
+            if(val){
+                socket.emit('message', {msg: val});
+                $('#new-message').val('');
+            }
+        });
+    };
+
     
