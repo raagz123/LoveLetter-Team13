@@ -14,7 +14,7 @@ const rooms = {};
 io.on('connection', function (socket){
   console.log('player connected');
 
-  //create game
+  //game creation 
   socket.on('createGame', function (data) {
     if(!data.username){
         socket.emit('err', {message:'please enter username'});
@@ -103,7 +103,7 @@ io.on('connection', function (socket){
 
 
 
-  //socket.io disconnection
+  //socket.io disconnnection 
   socket.on('disconnect', function() {
     console.log('player disconnected');
   });
