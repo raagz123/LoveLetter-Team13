@@ -1,7 +1,6 @@
 {
   "name": "loveletter-team13",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/raagz123/LoveLetter-Team13/issues"
   },
-  "homepage": "https://github.com/raagz123/LoveLetter-Team13#readme"
+  "homepage": "https://github.com/raagz123/LoveLetter-Team13#readme",
+  "description": ""
 }

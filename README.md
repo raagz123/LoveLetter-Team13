@@ -1,2 +1,0 @@
-# LoveLetter-Team13
-
