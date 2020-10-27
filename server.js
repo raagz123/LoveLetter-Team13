@@ -80,6 +80,23 @@ io.on('connection', function (socket){
                 }
             }
         });
+
+    //send a chat message
+    socket.on('message', function (data) {
+        let r = findRoomPlayer(socket);
+        if(r) {
+            socket.to(r.room).emit('message', {
+                username: r.username,
+                msg: escape(data.msg),
+                color: stringToColor(socket.id)
+            });
+            socket.emit('message', {
+                username: 'you',
+                msg: escape(data.msg),
+                color: stringToColor(socket.id)
+            });
+        }
+    });
  
         let buildDeck = function () {
             let deck = [];
