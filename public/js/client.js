@@ -81,3 +81,9 @@
     };
 
     
+    socket.on('logMessage', function (data) {
+        $('#messages').append('<p name="message">'+data.msg+'</p>');
+        if(data.hasOwnProperty('color')){
+            $('#messages p:last-child').css('color', data.color);
+        }
+    });
