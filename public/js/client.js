@@ -7,7 +7,7 @@ $(function () {
     var username = null;
 
 
-    var getChat = function(container_id){
+    var getChat = function (container_id) {
         $.ajax({
             type: 'GET',
             async: false,
@@ -22,15 +22,15 @@ $(function () {
         });
 
         $('#new-message').on('keydown', function (e) { //don't allow new lines
-            if(e.keyCode === 13){
+            if (e.keyCode === 13) {
                 return false;
             }
         });
-        
+
         $('#new-message').on('keyup', function (e) { //send message with enter
             let val = $.trim($('#new-message').val());
-            if(e.keyCode === 13 && val){
-                socket.emit('message', {msg: val});
+            if (e.keyCode === 13 && val) {
+                socket.emit('message', { msg: val });
                 $('#new-message').val('');
             }
         });
@@ -38,14 +38,14 @@ $(function () {
         $('#send-message').on('click', function () { //send message
             let val = $.trim($('#new-message').val());
 
-            if(val){
-                socket.emit('message', {msg: val});
+            if (val) {
+                socket.emit('message', { msg: val });
                 $('#new-message').val('');
             }
         });
     };
 
-    var getGame = function(container_id){
+    var getGame = function (container_id) {
         $.ajax({
             type: 'GET',
             async: false,
@@ -64,7 +64,7 @@ $(function () {
         });
 
         $('#cards .card').each(function () { //modal cards events
-            $(this).css('background-image', 'url("images/'+$(this).attr('face')+'.jpg")');
+            $(this).css('background-image', 'url("images/' + $(this).attr('face') + '.jpg")');
             $(this).on('click', function () {
                 $('#cards .selected-card').removeClass('selected-card');
                 $(this).addClass('selected-card');
@@ -80,42 +80,54 @@ $(function () {
     $('#newbtn').on('click', function () { //create new room
 
         $('#error-container').html('');
-        if($('#username').val()){
+        if ($('#username').val()) {
             username = $('#username').val();
         }
 
-       if($('#newRoom').val()){
-           socket.emit('createRoom', {room_name: $('#newRoom').val(), username: username})
-       }else{
-           $('#error-container').append('<p class="error-msg">Please enter room id</p>')
-       }
+        if ($('#newRoom').val()) {
+            socket.emit('createRoom', { room_name: $('#newRoom').val(), username: username })
+        } else {
+            $('#error-container').append('<p class="error-msg">Please enter room id</p>')
+        }
     });
 
     $('#joinbtn').on('click', function () { // join room
 
         $('#error-container').html('');
-        if($('#username').val()){
+        if ($('#username').val()) {
             username = $('#username').val();
         }
 
-        if($('#joinRoom').val()){
-            socket.emit('joinRoom', {room_name: $('#joinRoom').val(), username: username})
-        }else{
+        if ($('#joinRoom').val()) {
+            socket.emit('joinRoom', { room_name: $('#joinRoom').val(), username: username })
+        } else {
             $('#error-container').append('<p class="error-msg">Please enter room id</p>')
         }
     });
 
-     //socket events
+    //socket events
 
-     socket.on('err', function (data) {
+    socket.on('err', function (data) {
         $('#error-container').html('');
-        $('#error-container').append('<p class="error-msg">'+data.reason+'</p>');
+        $('#error-container').append('<p class="error-msg">' + data.reason + '</p>');
     });
 
     socket.on('error', function (data) {
         console.log(data);
     });
 
-    
+    socket.on('logMessage', function (data) {
+        $('#messages').append('<p name="message">' + data.msg + '</p>');
+        if (data.hasOwnProperty('color')) {
+            $('#messages p:last-child').css('color', data.color);
+        }
+    });
+
+    socket.on('message', function (data) {
+        $('#messages').append('<p name="message">' + data.username + ': ' + data.msg + '</p>');
+        $('#messages p:last-child').css({ color: data.color, fontWeight: 'bold' });
+    });
+
+
 
 });
