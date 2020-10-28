@@ -180,7 +180,7 @@ let stringToColor = function (str) { //changing string color in chat box
     return colour;
 };
 
-let sum_array = function (array, prop) { // sum of cards in deck
+let sum_array = function (array, prop) { // sum  array of cards in deck
     var total = 0;
     for (var i = 0, _len = array.length; i < _len; i++) {
         total += array[i][prop];
