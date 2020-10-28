@@ -88,6 +88,22 @@ function addPlayer(id, username) {
     }
 }
 
+//returns an object with the room name roomIndex and the player username
+function findRoomPlayer(socket) {
+    let data = null;
+    Object.keys(socket.rooms).forEach(function (room) {
+        // let roomIndex = rooms.findIndex(r => r.id === room);
+        if (rooms[room]) {
+            let player = rooms[room].players.find(p => p.id === socket.id);
+
+            if (player) {
+                data = { room: room, username: player.username };
+            }
+        }
+    });
+    return data;
+}
+
 function getPlayers(room, id) {
     let players = [];
     room.players.forEach(function (player) {
