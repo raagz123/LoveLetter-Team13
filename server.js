@@ -59,10 +59,10 @@ let suits = {
 
 let buildDeck = function () {
     let deck = [];
-    for(i=0; i<5; i++){
+    for (i = 0; i < 5; i++) {
         deck.push(suits[1])
     }
-    for(i=0; i<2; i++){
+    for (i = 0; i < 2; i++) {
         deck.push(suits[2]);
         deck.push(suits[3]);
         deck.push(suits[4]);
@@ -91,7 +91,7 @@ function addPlayer(id, username) {
 function getPlayers(room, id) {
     let players = [];
     room.players.forEach(function (player) {
-        if(player.id !== id) {
+        if (player.id !== id) {
             players.push({
                 username: player.username,
                 discarded: player.discarded,
@@ -108,18 +108,18 @@ io.on('connection', function (socket) {
 
     //create new game room
     socket.on('createRoom', function (data) {
-        if(!data.username){
-            socket.emit('err', {reason: 'Please enter username'});
+        if (!data.username) {
+            socket.emit('err', { reason: 'Please enter username' });
             return;
         }
 
-        if(data.room_name.length){
+        if (data.room_name.length) {
             let room_name = escape(data.room_name);
             let username = escape(data.username);
             let room = io.sockets.adapter.rooms[room_name];
-            if(!room){
+            if (!room) {
                 socket.join(room_name);
-                console.log('room: ' +room_name+ ', created by ' + username);
+                console.log('room: ' + room_name + ', created by ' + username);
                 socket.emit('joined', {
                     username: username,
                     player_num: 1,
@@ -132,36 +132,36 @@ io.on('connection', function (socket) {
                 };
                 rooms[room_name] = room;
             }
-            else{
-                socket.emit('err', {reason: 'Room name already exists'});
+            else {
+                socket.emit('err', { reason: 'Room name already exists' });
             }
         }
-        else{
-            socket.emit('err', {reason: 'Please enter room id'});
+        else {
+            socket.emit('err', { reason: 'Please enter room id' });
         }
     });
 
     //join existing room
     socket.on('joinRoom', function (data) {
-        if(!data.username){
-            socket.emit('err', {reason: 'Please enter username'});
+        if (!data.username) {
+            socket.emit('err', { reason: 'Please enter username' });
             return;
         }
 
-        if(data.room_name.length){
+        if (data.room_name.length) {
             let room_name = escape(data.room_name);
             let username = escape(data.username);
 
             let room = io.sockets.adapter.rooms[room_name];
 
-            if(room && rooms[room_name]){
+            if (room && rooms[room_name]) {
                 room = rooms[room_name];
-                if(room.players.length < 4) {
-                    if(room.players.findIndex(p => p.username === username) === -1) {
+                if (room.players.length < 4) {
+                    if (room.players.findIndex(p => p.username === username) === -1) {
                         socket.join(room_name);
                         room.players.push(addPlayer(socket.id, username));
-                        if(room.playing){
-                            room.players[room.players.length-1].isDead = true;
+                        if (room.playing) {
+                            room.players[room.players.length - 1].isDead = true;
                         }
                         console.log('room: ' + room_name + ', joined by ' + username);
                         socket.emit('joined', {
@@ -176,28 +176,48 @@ io.on('connection', function (socket) {
                             username: username,
                             isDead: room.playing
                         });
-                        socket.to(room_name).emit('logMessage', {msg: username+' joined the room',});
+                        socket.to(room_name).emit('logMessage', { msg: username + ' joined the room', });
                     }
-                    else{
-                        socket.emit('err', {reason: 'Username already taken'});
+                    else {
+                        socket.emit('err', { reason: 'Username already taken' });
                     }
                 }
             }
-            else{
-                socket.emit('err', {reason: 'Room does not exist'});
+            else {
+                socket.emit('err', { reason: 'Room does not exist' });
             }
         }
-        else{
-            socket.emit('err', {reason: 'Please enter room id'});
+        else {
+            socket.emit('err', { reason: 'Please enter room id' });
         }
     });
+
+
+    //send a chat message
+    socket.on('message', function (data) {
+        let r = findRoomPlayer(socket);
+        if (r) {
+            socket.to(r.room).emit('message', {
+                username: r.username,
+                msg: escape(data.msg),
+                color: stringToColor(socket.id)
+            });
+            socket.emit('message', {
+                username: 'you',
+                msg: escape(data.msg),
+                color: stringToColor(socket.id)
+            });
+        }
+    });
+
+
     //User disconnect
     socket.on('disconnect', function () {
-    console.log('User Disconnected');
+        console.log('User Disconnected');
     })
 });
 
-server.listen(3000, function (){     
-    console.log('Web server running at: http://localhost:3000');     
-    console.log('Press Ctrl+C to shut down the web server'); 
-  });
+server.listen(3000, function () {
+    console.log('Web server running at: http://localhost:3000');
+    console.log('Press Ctrl+C to shut down the web server');
+});
