@@ -91,7 +91,7 @@ $(function () {
         });
     };
 
-    var showSelect = function () {
+    var showSelect = function () { // player selecting the cards
         let cards = ['1','2','3','5','6'];
 
         if(cards.includes(lastPlayed)) {
@@ -238,7 +238,7 @@ $(function () {
                         .append('<h4>player: ' + player.username + '</h4>')
                         .append('<h4 name="tokens">tokens: ' + player.tokens + '</h4>');
 
-                    player.discarded.forEach(function (card) {// doesnt work yet
+                    player.discarded.forEach(function (card) { // doesnt work yet
                         addCard('#'+player.username+'.discard-pile', card);
                     });
                     return false;
@@ -265,7 +265,7 @@ $(function () {
         $('#you .player-card .shield').remove();
 
 
-        $('#you .hand .card').on('click', function () {// event for play card
+        $('#you .hand .card').on('click', function () { // event for play card
             $('#you .hand .card').off('click');
             $(this).remove();
 
@@ -325,7 +325,7 @@ $(function () {
         $('.player-container[id] .player-card').css('background', 'mediumpurple')
     });
 
-    socket.on('gameEnded', function (data) {
+    socket.on('gameEnded', function (data) { //game ended
         protection = [];
         $('#startbtn').show();
         $('#wildcard').hover(function () {
@@ -337,7 +337,7 @@ $(function () {
 
     });
 
-    socket.on('win', function (data) {
+    socket.on('win', function (data) { //player won 
         if(username !== data.winner){
             $('#'+data.winner+' [name=tokens]').text('tokens: '+data.tokens);
         }else{
@@ -348,7 +348,7 @@ $(function () {
 
     socket.on('updateDeck', function (data) {
         let dimensions = 3 + data.cards_remaining;
-        $('#deck').css({//give a deck thinning effect
+        $('#deck').css({ //give a deck thinning effect
             'border-top-left-radius': dimensions,
             'border-top-right-radius': 0,
             'border-bottom-right-radius': dimensions,
@@ -365,7 +365,7 @@ $(function () {
         }
     });
 
-    socket.on('killed', function (data) {
+    socket.on('killed', function (data) { //player is killed
         protection.push(data.username);
         if(username !== data.username) {
             $('#' + data.username + ' .player-card').css('background', 'gray');
@@ -385,7 +385,7 @@ $(function () {
         }
     });
 
-    socket.on('userLeft', function (data) {
+    socket.on('userLeft', function (data) { //user left
         $('#'+data.username +' .player-card').css('background', 'rgba(255, 255, 255, 0.2)')
             .html('<h4>Empty Seat</h4>');
         $('#'+data.username).removeAttr('id');

@@ -167,7 +167,7 @@ function addPlayer(id, username) {
     }
 }
 
-let stringToColor = function (str) {
+let stringToColor = function (str) { //changing string color in chat box
     var hash = 0;
     for (var i = 0; i < str.length; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -180,7 +180,7 @@ let stringToColor = function (str) {
     return colour;
 };
 
-let sum_array = function (array, prop) {
+let sum_array = function (array, prop) { // sum of cards in deck
     var total = 0;
     for (var i = 0, _len = array.length; i < _len; i++) {
         total += array[i][prop];
@@ -188,7 +188,7 @@ let sum_array = function (array, prop) {
     return total;
 };
 
-function shuffle(a) {
+function shuffle(a) { //shuffle cards
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
@@ -287,17 +287,18 @@ function checkDeck(room) { //check winner if deck runs out
             }
         }
     });
-    if (winner) {
+    if (winner) {  //player won the round
         winner.tokens++;
         io.in(room.id).emit('win', { winner: winner.username, tokens: winner.tokens });
         io.in(room.id).emit('logMessage', { msg: winner.username + ' won the round!' });
-    } else {
+    } else { //no winner for the round
         io.in(room.id).emit('logMessage', { msg: 'No winner for this round' });
     }
-    room.playing = false;
+    room.playing = false; //game ended
     io.in(room.id).emit('gameEnded', { wildcard: room.wildcard });
 }
 
+//next turn of the player
 function nextTurn(room) {
     checkDeaths(room);
     checkDeck(room);
