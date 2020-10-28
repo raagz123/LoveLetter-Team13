@@ -45,6 +45,37 @@ $(function () {
         });
     };
 
+    var getGame = function(container_id){
+        $.ajax({
+            type: 'GET',
+            async: false,
+            url: "partials/gameplay.html",
+            success: function (html) {
+                $(container_id).append(html);
+            },
+            error: function (err) {
+                console.warn(err);
+                location.reload();
+            }
+        });
+
+        $('#startbtn').on('click', function () {//start game
+            socket.emit('startGame');
+        });
+
+        $('#cards .card').each(function () { //modal cards events
+            $(this).css('background-image', 'url("images/'+$(this).attr('face')+'.jpg")');
+            $(this).on('click', function () {
+                $('#cards .selected-card').removeClass('selected-card');
+                $(this).addClass('selected-card');
+                $('#cards').attr('face', $(this).attr('face'));
+            });
+        })
+
+
+    };
+
+
 
     $('#newbtn').on('click', function () { //create new room
 
