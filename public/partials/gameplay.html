@@ -1,0 +1,88 @@
+<div id="gameboard" class="pull-left">
+
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-12 text-center ">
+              <h1>Love Letter</h1>
+           </div>
+
+    <!-- The Modal -->
+    <div class="modal modal-custom fade" id="selectModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3>Select cards/players</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div face="" id="cards">
+                        <div face="2" class="card card-mini"></div>
+                        <div face="3" class="card card-mini"></div>
+                        <div face="4" class="card card-mini"></div>
+                        <div face="5" class="card card-mini"></div>
+                        <br>
+                        <div face="6" class="card card-mini"></div>
+                        <div face="7" class="card card-mini"></div>
+                        <div face="8" class="card card-mini"></div>
+                        <hr>
+                    </div>
+                    <div>
+                        <h5>Players:</h5>
+                        <select id="playerSelect" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="selectbtn" type="button" class="btn btn-block btn-success">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="opponents">
+        <div class="player-container opponent">
+            <div class="player-card">
+                <h4>Player 2</h4>
+            </div>
+            <div class="discard-pile"></div>
+        </div>
+
+        <div class="player-container opponent">
+            <div class="player-card">
+                <h4>Player 3</h4>
+            </div>
+            <div class="discard-pile"></div>
+        </div>
+
+        <div class="player-container opponent">
+            <div class="player-card">
+                <h4>Player 4</h4>
+            </div>
+            <div class="discard-pile"></div>
+        </div>
+    </div>
+
+    <div id="deck-container" style="display: none">
+        <div id="wildcard" class="card card-back">
+            <h1></h1>
+        </div>
+        <div id="deck" class="card card-back">
+        </div>
+        <div id="deck-discards"></div>
+    </div>
+
+    <div id="you" class="player-container">
+        <div>
+            <div class="discard-pile"></div>
+            <div class="player-card">
+            </div>
+        </div>
+        <div class="hand"></div>
+    </div>
+    <div id="card-prev" style="display: none" class="card card-preview">
+
+    </div>
+    <button type="button" id="startbtn" class="btn btn-lg btn-success game-btn">Start</button>
+    <button type="button" data-toggle="modal" data-target="#selectModal" style="display: none" id="showSelectButton" class="btn btn-lg btn-primary game-btn">Show Selections</button>
+</div>

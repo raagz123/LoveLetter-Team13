@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LoveLetter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/home.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/includes.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+
+
+    
+    <div  id="homemenu" class="semi-transparent">
+
+
+
+        <div class="container-fluid">
+            <div class="row">
+               <div class="col-12 text-center ">
+                  <h1>Choose Your Clan</h1>
+               </div>
+               <div class="col text-center">
+                  <div><img src="images/warrior.jpg" class="img-fluid imgcus"></div>
+                  <div>
+                     <h6>Warrior</h6>
+                  </div>
+               </div>
+               <div class="col text-center">
+                  <div><img src="images/scholar.jpg" class="img-fluid imgcus"></div>
+                  <div>
+                     <h6>Scholar</h6>
+                  </div>
+               </div>
+               <div class="col text-center">
+                  <div><img src="images/farmer.jpg" class="img-fluid imgcus"></div>
+                  <div>
+                     <h6>Farmer</h6>
+                  </div>
+               </div>
+               <div class="col  text-center">
+                  <div><img src="images/trader.jpg" class="img-fluid imgcus"></div>
+                  <div>
+                     <h6>Trader</h6>
+                  </div>
+               </div>
+        </div>
+
+
+        <div class="input-group-2">
+            <label for="username">Username:</label>
+            <input id="username" type="text" maxlength="12" placeholder="What should I call you?">
+            <div id='error-container' style="width:100%; height:5%; margin-top: 5%"><span id="err" class="error-msg"></span></div>
+        </div>
+
+        
+
+        <div class="input-group-2">
+            <label for="newRoom">Create a new Room:</label>
+            <input id="newRoom" type="text" maxlength="12" placeholder="Room name">
+            
+            <button id="newbtn" type="button" class="btn btn-success">Create</button>
+            <div id='error-container' style="width:100%; height:5%; margin-top: 5%"><span id="err" class="error-msg"></span></div>
+        </div>
+        
+        <div class="input-group-2">
+            <label for="joinRoom">Join an existing Room:</label>
+            <input id="joinRoom" type="text" maxlength="12" placeholder="Room name">
+            <button id="joinbtn" type="button" class="btn btn-info">Join</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/client.js"></script>
+</body>
+</html>
